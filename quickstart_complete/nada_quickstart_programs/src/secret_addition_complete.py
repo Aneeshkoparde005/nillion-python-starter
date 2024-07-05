@@ -1,12 +1,16 @@
 from nada_dsl import *
+
 def nada_main():
 
-    party1 = Party(name="Party1")
+    partyA = Party(name="PartyA")
+    partyB = Party(name="PartyB")
 
-    my_int1 = SecretInteger(Input(name="my_int1", party=party1))
+    secret_num1 = SecretInteger(Input(name="secret_num1", party=partyA))
+    secret_num2 = SecretInteger(Input(name="secret_num2", party=partyA))
+    secret_num3 = SecretInteger(Input(name="secret_num3", party=partyB))
 
-    my_int2 = SecretInteger(Input(name="my_int2", party=party1))
+    sum_result = secret_num1 + secret_num2
+    final_result = sum_result * secret_num3
 
-    new_int = my_int1 + my_int2
+    return [Output(final_result, "final_output", partyA), Output(secret_num3, "secret_num3_output", partyB)]
 
-    return [Output(new_int, "my_output", party1)]
